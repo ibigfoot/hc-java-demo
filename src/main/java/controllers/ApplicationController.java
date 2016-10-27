@@ -16,17 +16,23 @@
 
 package controllers;
 
+import services.DatabaseService;
 import ninja.Result;
 import ninja.Results;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 
 @Singleton
 public class ApplicationController {
 
+	@Inject
+	DatabaseService databaseService;
+	
     public Result index() {
 
+    	databaseService.getDatabaseTables();
         return Results.html();
 
     }
