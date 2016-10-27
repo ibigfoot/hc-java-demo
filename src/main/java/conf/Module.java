@@ -16,6 +16,9 @@
 
 package conf;
 
+import services.DatabaseService;
+import services.DatabaseServiceImpl;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 
@@ -26,7 +29,7 @@ public class Module extends AbstractModule {
     protected void configure() {
         
         // bind your injections here!
-        
+        bind(DatabaseService.class).to(DatabaseServiceImpl.class);
     }
 
 }
