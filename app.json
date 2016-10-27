@@ -1,7 +1,7 @@
 {
   "name": "Java Heroku Connect demo",
   "description": "A flexible java application for demonstrating bi-directional sync using Heroku Connect",
-  "addons": ["heroku-postgresql:hobby-dev", "papertrail"],
+  "addons": ["heroku-postgresql:hobby-dev", "papertrail", "heroku-connect"],
   "env": {
     "application.secret": "your ninja app secret key"
   }
