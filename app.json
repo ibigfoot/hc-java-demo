@@ -4,8 +4,5 @@
   "addons": ["heroku-postgresql:hobby-dev", "papertrail"],
   "env": {
     "application.secret": "your ninja app secret key"
-  },
-  "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
   }
 }
