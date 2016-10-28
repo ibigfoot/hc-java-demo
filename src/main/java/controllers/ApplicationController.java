@@ -58,6 +58,9 @@ public class ApplicationController {
 
 		for(String s : resultList) {
 			logger.info("Table [{}]", s);
+			if(s.startsWith("_")) {
+				resultList.remove(s);
+			}
 		}
 		Result r = Results.html();
 		r.render("tables", resultList);
