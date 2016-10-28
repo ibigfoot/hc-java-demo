@@ -16,23 +16,50 @@
 
 package controllers;
 
-import services.DatabaseService;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import ninja.Result;
 import ninja.Results;
+import ninja.utils.NinjaProperties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
+
 
 
 @Singleton
 public class ApplicationController {
 
+	@Inject 
+	Provider<EntityManager> entitiyManagerProvider;
+	
 	@Inject
-	DatabaseService databaseService;
+	NinjaProperties props;
+	
+	private Logger logger;
 	
     public Result index() {
 
-    	databaseService.getDatabaseTables();
+    	logger = LoggerFactory.getLogger(this.getClass());
+    	
+    	EntityManager em = entitiyManagerProvider.get();
+    	
+    	// if prop is not set, default to salesforce
+		String schema = props.get("heroku.connect.schema.name") != null ? props.get("heroku.connect.schema.name") : "salesforce";
+    	Query q = em.createNativeQuery("select table_name from information_schema.tables where table_schema = '"+schema+"'");
+		List<String> resultList = (List<String>)q.getResultList();
+
+		for(String s : resultList) {
+			logger.info("Table [{}]", s);
+		}
+		
         return Results.html();
 
     }

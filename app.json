@@ -3,6 +3,7 @@
   "description": "A flexible java application for demonstrating bi-directional sync using Heroku Connect",
   "addons": ["heroku-postgresql:hobby-dev", "papertrail", "herokuconnect"],
   "env": {
-    "application.secret": "your ninja app secret key"
+    "application.secret": "a48SCPk3EOs9RTbYTBxqlT3zcwjxxPVl5kdhCBdoO9Ecs87mP94NYiuvdwRRnGqM",
+    "heroku.connect.schema.name" : "salesforce"
   }
 }
