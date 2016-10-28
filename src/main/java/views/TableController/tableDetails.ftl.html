@@ -1,0 +1,27 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Table page">    
+
+This page allows you to update the values for a table and save.. if you have configured bi-directional sync on your Heroku Connect service you should see this update be replicated in your Salesforce instance as well. 
+
+<#if columns??>
+Columns : 
+<ul>
+<#list columns as col>
+	<li>${col}</li>
+</#list>
+</ul>
+<#else>
+This table has no columns
+</#if>
+
+<#if values??>
+Values :
+<#list values as val>
+	<li>${val}</li>
+</#list>
+</ul>
+<#else>
+This table has no rows
+</#if>
+
+</@layout.myLayout>

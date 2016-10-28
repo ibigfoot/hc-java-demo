@@ -59,8 +59,9 @@ public class ApplicationController {
 		for(String s : resultList) {
 			logger.info("Table [{}]", s);
 		}
-		
-        return Results.html();
+		Result r = Results.html();
+		r.render("tables", resultList);
+        return r;
 
     }
     

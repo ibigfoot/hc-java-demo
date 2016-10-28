@@ -1,18 +1,13 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="/">${i18n("header.title")}</a>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="/">${i18n("header.home")}</a></li>
-			</ul>
-		</div>
-		<!--/.navbar-collapse -->
+<div class="slds-grid slds-wrap slds-p-top--small">
+	<div class="slds-col slds-size--1-of-3 slds-p-around--small">
+		<a href="https://developer.salesforce.com" target="_blank">
+			<span class="slds-avatar slds-avatar--large"><img src="/assets/images/logo-noname.svg"/></span>
+		</a>
+	</div>
+	<div class="slds-col slds-size--1-of-3 slds-align--absolute-center">
+		<span class="slds-text-heading--large">${i18n("header.title")}</span>
+	</div>
+	<div class="slds-col slds-size--1-of-3">
+		<!-- reserved for OAuth buttons -->
 	</div>
 </div>

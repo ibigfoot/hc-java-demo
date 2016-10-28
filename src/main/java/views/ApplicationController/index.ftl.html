@@ -1,9 +1,24 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
 <@layout.myLayout "Home page">    
 
+<div>
+Heroku Connect allows customers to synchronise data between Salesforce and an Heroku PostgreSQL database. 
 
-<h1>${i18n("hello.world")}</h1>
-<p>${i18n("hello.world.json")}</p>
-<a href="/hello_world.json">Hello World Json</a>
+<#if tables?has_content>
+	<ul>
+	<#list tables as table>
+    	<li><a href="/table/${table}">${table}</a></li>
+	</#list>
+	</ul>
+<#else>
+	<div>
+	 You have no tables to talk about! There is probably one of two reasons why this is the case...
+		<ul class="slds-list--dotted">
+			<li>You have yet to configure the Heroku Connect resource and authorise with your Salesforce credentials</li>
+			<li>You have authorised but haven't yet created any mappings in Heroku Connect</li>
+		</ul>
+	</div>
+</#if>
+</div>
 
 </@layout.myLayout>
