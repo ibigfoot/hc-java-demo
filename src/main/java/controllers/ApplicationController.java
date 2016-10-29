@@ -54,7 +54,8 @@ public class ApplicationController {
     	
     	// if prop is not set, default to salesforce
 		String schema = props.get("heroku.connect.schema.name") != null ? props.get("heroku.connect.schema.name") : "salesforce";
-    	Query q = em.createNativeQuery("select table_name from information_schema.tables where table_schema = '"+schema);
+    	logger.info("Schema query [{}]","select table_name from information_schema.tables where table_schema = '"+schema);
+		Query q = em.createNativeQuery("select table_name from information_schema.tables where table_schema = '"+schema);
 		List<String> resultList = (List<String>)q.getResultList();
 
 		List<String> tables = new ArrayList<String>();
