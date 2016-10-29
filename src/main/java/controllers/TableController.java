@@ -1,6 +1,9 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -36,20 +39,27 @@ public class TableController {
 		String schema = props.get("heroku.connect.schema.name") != null ? props.get("heroku.connect.schema.name") : "salesforce";
 		String schemaAndTable = schema + "." + tableName;
 		
-		Query nameQuery = em.createNativeQuery("select * from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
-		logger.info("Executing query [{}]", "select * from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
+		Query nameQuery = em.createNativeQuery("select column_name from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
+		logger.info("Executing query [{}]", "select column_name from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
 		
-		List<Object> columns = (List<Object>)nameQuery.getResultList();
+		List<String> columns = (List<String>)nameQuery.getResultList();
 		
-		for(Object obj : columns) {
-			logger.info("Col [{}] is a type of [{}]",obj.toString(), obj.getClass());
+		if(logger.isInfoEnabled()) {
+			for(String s : columns) {
+				logger.info("Col [{}]",s);
+			}
 		}
 		
 		Query q = em.createNativeQuery("select * from "+schemaAndTable);
 		logger.info("Executing query [{}]", "select * from "+schemaAndTable);
-		List<String> values = (List<String>)q.getResultList();
-		for(String s : values) {
-			logger.info("Val [{}]", s);
+		List<Object[]> values = (List<Object[]>)q.getResultList();
+		List<List<Object>> tuples = new ArrayList<List<Object>>();
+		for(Object[] objArray : values) {
+			
+			for(Object obj : objArray) {
+				logger.info("We have an obj [{}]", obj);
+			}
+			
 		}
 		
 		Result r = Results.html();

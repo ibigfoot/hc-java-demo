@@ -16,8 +16,11 @@ This table has no columns
 
 <#if values??>
 Values :
-<#list values as val>
-	<li>${val}</li>
+<#list values as tuple>
+	We have a row ---- <br />
+	<#list tuple as val>
+		Value - ${val} <br />
+	</#list>
 </#list>
 </ul>
 <#else>
