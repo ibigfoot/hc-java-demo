@@ -66,7 +66,7 @@ public class ApplicationController {
 			}
 		}
 		Result r = Results.html();
-		r.render("tables", resultList);
+		r.render("tables", tables);
         return r;
 
     }
