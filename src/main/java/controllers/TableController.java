@@ -39,7 +39,7 @@ public class TableController {
 		String schema = props.get("heroku.connect.schema.name") != null ? props.get("heroku.connect.schema.name") : "salesforce";
 		String schemaAndTable = schema + "." + tableName;
 		
-		Query nameQuery = em.createNativeQuery("select column_name from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
+		Query nameQuery = em.createNativeQuery("select column_name, data_type from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
 		logger.info("Executing query [{}]", "select column_name from information_schema.columns where table_schema = '"+schema+"' and table_name = '"+tableName+"'");
 		
 		List<String> columns = (List<String>)nameQuery.getResultList();
