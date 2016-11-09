@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -Dninja.mode=prod -Dninja.port=$PORT -jar target/connect-java-demo.jar 
+web:    java $JAVA_OPTS -javaagent:target/dependency/heroku-javaagent.jar=stdout=true,lxmem=true -Dninja.mode=prod -Dninja.port=$PORT -jar target/connect-java-demo.jar 
